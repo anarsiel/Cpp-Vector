@@ -29,75 +29,75 @@ TEST(correctness, push_back_simple)
         c.push_back(8);
         EXPECT_FALSE(c.empty());
         EXPECT_EQ(2u, c.size());
-//        c.push_back(15);
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(3u, c.size());
-//        c.push_back(16);
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(4u, c.size());
-//        c.push_back(23);
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(5u, c.size());
-//        c.push_back(42);
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(6u, c.size());
+        c.push_back(15);
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(3u, c.size());
+        c.push_back(16);
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(4u, c.size());
+        c.push_back(23);
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(5u, c.size());
+        c.push_back(42);
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(6u, c.size());
     });
 }
 
-//TEST(correctness, push_back_big)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c;
-//
-//        for (size_t i = 0; i != 20; ++i)
-//        {
-//            int val = (i + 42) % 13;
-//            c.push_back(val);
-//        }
-//
-//        for (size_t i = 0; i != 20; ++i)
-//        {
-//            int val = (i + 42) % 13;
-//            EXPECT_EQ(val, c[i]);
-//        }
-//    });
-//}
+TEST(correctness, push_back_big)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c;
 
-//TEST(correctness, pop_back)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c;
-//        c.push_back(4);
-//        c.push_back(8);
-//        c.push_back(15);
-//        c.push_back(16);
-//        c.push_back(23);
-//        c.push_back(42);
-//        c.pop_back();
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(5u, c.size());
-//        c.pop_back();
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(4u, c.size());
-//        c.pop_back();
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(3u, c.size());
-//        c.pop_back();
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(2u, c.size());
-//        c.pop_back();
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(1u, c.size());
-//        c.pop_back();
-//        EXPECT_TRUE(c.empty());
-//        EXPECT_EQ(0u, c.size());
-//    });
-//}
-//
+        for (size_t i = 0; i != 20; ++i)
+        {
+            int val = (i + 42) % 13;
+            c.push_back(val);
+        }
+
+        for (size_t i = 0; i != 20; ++i)
+        {
+            int val = (i + 42) % 13;
+            EXPECT_EQ(val, c[i]);
+        }
+    });
+}
+
+TEST(correctness, pop_back)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c;
+        c.push_back(4);
+        c.push_back(8);
+        c.push_back(15);
+        c.push_back(16);
+        c.push_back(23);
+        c.push_back(42);
+        c.pop_back();
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(5u, c.size());
+        c.pop_back();
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(4u, c.size());
+        c.pop_back();
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(3u, c.size());
+        c.pop_back();
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(2u, c.size());
+        c.pop_back();
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(1u, c.size());
+        c.pop_back();
+        EXPECT_TRUE(c.empty());
+        EXPECT_EQ(0u, c.size());
+    });
+}
+
 //TEST(correctness, copy_ctor)
 //{
 //    faulty_run([]

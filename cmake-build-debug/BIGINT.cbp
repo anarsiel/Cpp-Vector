@@ -86,10 +86,31 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/main.cpp">
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/counted.cpp">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/counted.h">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/fault_injection.cpp">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/fault_injection.h">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/gtest/gtest-all.cc">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/gtest/gtest.h">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/gtest/gtest_main.cc">
 			<Option target="vector_testing"/>
 		</Unit>
 		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/vector.h">
+			<Option target="vector_testing"/>
+		</Unit>
+		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/vector_testing.cpp">
 			<Option target="vector_testing"/>
 		</Unit>
 		<Unit filename="/home/blagoi/Documents/EXAM/VECTOR/CMakeLists.txt">
