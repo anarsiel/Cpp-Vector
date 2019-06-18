@@ -27,8 +27,8 @@ TEST(correctness, push_back_simple)
         EXPECT_FALSE(c.empty());
         EXPECT_EQ(1u, c.size());
         c.push_back(8);
-//        EXPECT_FALSE(c.empty());
-//        EXPECT_EQ(2u, c.size());
+        EXPECT_FALSE(c.empty());
+        EXPECT_EQ(2u, c.size());
 //        c.push_back(15);
 //        EXPECT_FALSE(c.empty());
 //        EXPECT_EQ(3u, c.size());
@@ -64,7 +64,7 @@ TEST(correctness, push_back_simple)
 //        }
 //    });
 //}
-//
+
 //TEST(correctness, pop_back)
 //{
 //    faulty_run([]

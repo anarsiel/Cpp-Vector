@@ -68,6 +68,7 @@ counted::no_new_instances_guard::no_new_instances_guard()
 counted::no_new_instances_guard::~no_new_instances_guard()
 {
     fault_injection_disable fd;
+
     EXPECT_TRUE(old_instances == instances);
 }
 

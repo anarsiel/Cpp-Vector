@@ -27,14 +27,22 @@ private:
             array = array_;
         }
 
+        many_elements_type(size_t capacity, size_t links_count, size_t sz)
+                : sz(sz), capacity(capacity), links_count(links_count), array(static_cast<T *>(::operator new(10 * sizeof(T)))) {}
+
         many_elements_type(many_elements_type &other)
-                : capacity(other.capacity), array(other.array), links_count(other.links_count) {}
+                : sz(other.sz), capacity(other.capacity), array(other.array), links_count(other.links_count) {}
 
-        many_elements_type(size_t capacity, size_t links_count, T *array)
-                : capacity(capacity), links_count(links_count), array(array) {}
+        many_elements_type(size_t sz, size_t capacity, size_t links_count, T *array)
+                : sz(sz), capacity(capacity), links_count(links_count), array(array) {}
 
-        ~many_elements_type() = default;
+        ~many_elements_type() {
+            if (!array) {
+                delete(array);
+            }
+        };
 
+        size_t sz;
         size_t capacity;
         size_t links_count;
 
@@ -66,9 +74,9 @@ public:
             --buffer.many_elements->links_count;
             if (get_amount_of_links() == 0) {
                 clear();
-                delete (buffer.many_elements);
             }
         }
+        buffer.~U();
     }
 
     template <typename InputIterator>
@@ -112,25 +120,29 @@ public:
             sz = 1;
             new (&buffer.one_element) T(element);
         } else if (contains_one()) {
-            make_unique();
-
             T *tmp_elem = static_cast<T *>(::operator new(sizeof(T)));
             new (tmp_elem) T(buffer.one_element);
 
             buffer.one_element.~T();
 
-            buffer.many_elements = new many_elements_type(10, 1, static_cast<T *>(::operator new(10 * sizeof(T))));
+//            T* array_tmp = static_cast<T *>(::operator new(10 * sizeof(T)));
+//            buffer.many_elements = new many_elements_type();
+//            buffer.many_elements->links_count = 1;
+//            buffer.many_elements->capacity = 10;
+            buffer.many_elements = new many_elements_type(10, 1);
+
             sz = 2;
 
             new (&buffer.many_elements->array[0]) T(*tmp_elem);
-//            delete(tmp_elem);
+            tmp_elem->~T();
+            delete(tmp_elem);
 
             new (&buffer.many_elements->array[1]) T(element);
         } else if (contains_many()) {
             make_unique();
             ensure_capacity();
 
-            new(buffer.many_elements->array + sz) T(element);
+            new(&buffer.many_elements->array[sz]) T(element);
             ++sz;
         }
     }
@@ -146,16 +158,22 @@ public:
             make_unique();
 
             T* tmp = static_cast<T*> (::operator new(sizeof(T)));
-            new (tmp) T(buffer.many_elements->array[0]); // this fucking smthing is not initilized!!!!!
+            new (tmp) T(buffer.many_elements->array[0]);
 
             buffer.many_elements->array[0].~T();
             buffer.many_elements->array[1].~T();
-            delete (buffer.many_elements);
+
+//            delete(buffer.many_elements->array);
+            buffer.many_elements->~many_elements_type();
+            delete(buffer.many_elements);
 
             new (&buffer.one_element) T(*tmp);
+            tmp->~T();
+            delete(tmp);
             --sz;
             return;
         }
+
         make_unique();
         ensure_capacity();
 
@@ -209,8 +227,8 @@ private:
     size_t sz;
 
     union U {
-        U() : many_elements(new many_elements_type()) {}
-        ~U() {}
+        U() {}
+        ~U() {};
 
         many_elements_type* many_elements;
         T one_element;
@@ -223,28 +241,28 @@ private:
     bool unique() { return empty() || contains_one() || (get_amount_of_links() == 1); }
 
     void make_unique() {
-        if (unique()) return;
-
-        auto tmp = new many_elements_type(static_cast<T *>(::operator new(get_capacity() * sizeof(T))));
-        tmp->capacity = get_capacity();
-        tmp->links_count = 1;
-
-        memcpy(tmp->array, buffer.many_elements->array, get_capacity());
-
-        buffer.many_elements->links_count--;
-
-        buffer.many_elements = tmp;
+//        if (unique()) return;
+//
+//        auto tmp = new many_elements_type(static_cast<T *>(::operator new(get_capacity() * sizeof(T))));
+//        tmp->capacity = get_capacity();
+//        tmp->links_count = 1;
+//
+//        memcpy(tmp->array, buffer.many_elements->array, get_capacity());
+//
+//        buffer.many_elements->links_count--;
+//
+//        buffer.many_elements = tmp;
     }
 
     // object must be already unique
     void ensure_capacity() {
-        if (sz == get_capacity()) {
-            T* tmp_adress = static_cast<T *>(::operator new(2 * get_capacity() * sizeof(T)));
-            memcpy(tmp_adress, buffer.many_elements->array, sz * sizeof(T));
-
-            buffer.many_elements->array = tmp_adress;
-            buffer.many_elements->capacity *= 2;
-        }
+//        if (sz == get_capacity()) {
+//            T* tmp_adress = static_cast<T *>(::operator new(2 * get_capacity() * sizeof(T)));
+//            memcpy(tmp_adress, buffer.many_elements->array, sz * sizeof(T));
+//
+//            buffer.many_elements->array = tmp_adress;
+//            buffer.many_elements->capacity *= 2;
+//        }
     }
 };
 

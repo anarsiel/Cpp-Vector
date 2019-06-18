@@ -5,8 +5,8 @@ project(BIGINT)
 include_directories(${BIGINT_SOURCE_DIR})
 
 add_executable(vector_testing
-               vector_testing.cpp counted.h counted.cpp fault_injection.h fault_injection.cpp gtest/gtest-all.cc gtest/gtest.h gtest/gtest_main.cc
-#               main.cpp
+#               vector_testing.cpp counted.h counted.cpp fault_injection.h fault_injection.cpp gtest/gtest-all.cc gtest/gtest.h gtest/gtest_main.cc
+               main.cpp
                vector.h
                )
 

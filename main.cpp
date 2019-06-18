@@ -25,12 +25,18 @@ int main() {
 //    for (size_t i = 0; i < v.size(); ++i)
 //        std::cout << v[i].a << ' ' << v[i].b << std::endl;
 
-    vector<int> a;
-    a.push_back(2);
-    a.push_back(9);
-    a.push_back(3);
-    for (size_t i = 0; i < a.size(); ++i)
-        std::cout << a[i] << ' ';
-    std::cout << std::endl;
+//    vector<int> a;
+//    a.push_back(2);
+//    a.push_back(9);
+//    a.push_back(3);
+//    for (size_t i = 0; i < a.size(); ++i)
+//        std::cout << a[i] << ' ';
+//    std::cout << std::endl;
+
+    vector<int> x;
+    x.push_back(2);
+    x.push_back(3);
+
+    int a = 2;
     return 0;
 }
