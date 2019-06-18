@@ -1,0 +1,3 @@
+/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir
+/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/edit_cache.dir
