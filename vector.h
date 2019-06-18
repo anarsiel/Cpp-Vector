@@ -27,22 +27,22 @@ private:
             array = array_;
         }
 
-        many_elements_type(size_t capacity, size_t links_count, size_t sz)
-                : sz(sz), capacity(capacity), links_count(links_count), array(static_cast<T *>(::operator new(10 * sizeof(T)))) {}
+        many_elements_type(size_t capacity, size_t links_count)
+                : capacity(capacity), links_count(links_count), array(static_cast<T *>(::operator new(10 * sizeof(T)))) {}
 
         many_elements_type(many_elements_type &other)
-                : sz(other.sz), capacity(other.capacity), array(other.array), links_count(other.links_count) {}
+                : capacity(other.capacity), array(other.array), links_count(other.links_count) {}
 
-        many_elements_type(size_t sz, size_t capacity, size_t links_count, T *array)
-                : sz(sz), capacity(capacity), links_count(links_count), array(array) {}
+        many_elements_type(size_t capacity, size_t links_count, T *array)
+                : capacity(capacity), links_count(links_count), array(array) {}
 
         ~many_elements_type() {
             if (!array) {
+//                array->~T();
                 delete(array);
             }
         };
 
-        size_t sz;
         size_t capacity;
         size_t links_count;
 
