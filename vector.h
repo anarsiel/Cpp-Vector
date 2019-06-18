@@ -76,12 +76,10 @@ public:
         // todo
     }
 
-    ///////////////////////////////////
-    ///////////////////////////////////
-    ///////////////////////////////////
     T &operator[](size_t index) {
         if (contains_only_one()) return buffer.one_element;
 
+        make_unique();
         return buffer.many_elements->_array[index];
     }
 
@@ -107,9 +105,28 @@ public:
         return buffer.many_elements->_array[size() - 1];
     }
 
+    T const &front() const {
+        if (contains_only_one()) {
+            return buffer.one_element;
+        }
+
+        return buffer.many_elements->_array[0];
+    }
+
+    T const &back() const {
+        if (contains_only_one()) {
+            return buffer.one_element;
+        }
+
+        return buffer.many_elements->_array[size() - 1];
+    }
+
     void push_back(T const &element) {
+        T* element_copy = static_cast<T *>(::operator new(sizeof(T)));
+        new(element_copy) T(element);
+
         if (empty()) {
-            new (&buffer.one_element) T(element);
+            new (&buffer.one_element) T(*element_copy);
             _empty = false;
         } else if (contains_only_one()) {
             T *tmp_elem = static_cast<T *>(::operator new(sizeof(T)));
@@ -117,26 +134,24 @@ public:
 
             buffer.one_element.~T();
 
-//            T* array_tmp = static_cast<T *>(::operator new(10 * sizeof(T)));
-//            buffer.many_elements = new many_elements_type();
-//            buffer.many_elements->_links = 1;
-//            buffer.many_elements->_capacity = 10;
             T* array_tmp = static_cast<T *>(::operator new(4 * sizeof(T)));
             buffer.many_elements = new many_elements_type(2, 4, 1, array_tmp);
 
             new (&buffer.many_elements->_array[0]) T(*tmp_elem);
             delete(tmp_elem);
 
-            new (&buffer.many_elements->_array[1]) T(element);
+            new (&buffer.many_elements->_array[1]) T(*element_copy);
 
             _is_big = true;
         } else {
             make_unique();
             ensure_capacity();
 
-            new(&buffer.many_elements->_array[size()]) T(element);
+            new(&buffer.many_elements->_array[size()]) T(*element_copy);
             buffer.many_elements->_size++;
         }
+
+        delete(element_copy);
     }
 
     void pop_back() {
@@ -180,9 +195,17 @@ public:
 
         return buffer.many_elements->_array;
     }
-    ///////////////////////////////////
-    ///////////////////////////////////
-    ///////////////////////////////////
+
+    T const * data() const {
+        if (empty())
+            return nullptr;
+
+        if (contains_only_one()) {
+            return &buffer.one_element;
+        }
+
+        return buffer.many_elements->_array;
+    }
 
     bool empty() const { return _empty; }
 
@@ -207,6 +230,8 @@ public:
             pop_back();
         }
 
+        _is_big = other._is_big;
+        _empty = other._empty;
         if (other.contains_only_one()) {
             buffer.one_element = other.buffer.one_element;
         } else if (other.is_big()) {
@@ -246,18 +271,13 @@ private:
         auto tmp = static_cast<T *>(::operator new(get_capacity() * sizeof(T)));
         buffer.many_elements->_links--;
 
-        size_t tmp_size_var = size();
-        size_t tmp_capacity_var = capacity();
-        for (size_t i = 0; i < tmp_size_var; ++i) {
+        for (size_t i = 0; i < size(); ++i) {
             new(tmp + i) T(buffer.many_elements->_array[i]);
-            buffer.many_elements->_array[i].~T();
         }
-        delete(buffer.many_elements);
 
-        buffer.many_elements->_array = tmp;
-        buffer.many_elements->_size = tmp_size_var;
-        buffer.many_elements->_capacity = tmp_capacity_var;
-        buffer.many_elements->_links = 1;
+        auto tmp_buffer = new many_elements_type(size(), capacity(), get_amount_of_links(), tmp);
+
+        buffer.many_elements = tmp_buffer;
     }
 
     // object must be unique
