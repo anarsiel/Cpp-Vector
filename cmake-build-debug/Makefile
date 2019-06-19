@@ -123,140 +123,32 @@ vector_testing/fast:
 	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/build
 .PHONY : vector_testing/fast
 
-counted.o: counted.cpp.o
+main.o: main.cpp.o
 
-.PHONY : counted.o
-
-# target to build an object file
-counted.cpp.o:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/counted.cpp.o
-.PHONY : counted.cpp.o
-
-counted.i: counted.cpp.i
-
-.PHONY : counted.i
-
-# target to preprocess a source file
-counted.cpp.i:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/counted.cpp.i
-.PHONY : counted.cpp.i
-
-counted.s: counted.cpp.s
-
-.PHONY : counted.s
-
-# target to generate assembly for a file
-counted.cpp.s:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/counted.cpp.s
-.PHONY : counted.cpp.s
-
-fault_injection.o: fault_injection.cpp.o
-
-.PHONY : fault_injection.o
+.PHONY : main.o
 
 # target to build an object file
-fault_injection.cpp.o:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/fault_injection.cpp.o
-.PHONY : fault_injection.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-fault_injection.i: fault_injection.cpp.i
+main.i: main.cpp.i
 
-.PHONY : fault_injection.i
-
-# target to preprocess a source file
-fault_injection.cpp.i:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/fault_injection.cpp.i
-.PHONY : fault_injection.cpp.i
-
-fault_injection.s: fault_injection.cpp.s
-
-.PHONY : fault_injection.s
-
-# target to generate assembly for a file
-fault_injection.cpp.s:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/fault_injection.cpp.s
-.PHONY : fault_injection.cpp.s
-
-gtest/gtest-all.o: gtest/gtest-all.cc.o
-
-.PHONY : gtest/gtest-all.o
-
-# target to build an object file
-gtest/gtest-all.cc.o:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o
-.PHONY : gtest/gtest-all.cc.o
-
-gtest/gtest-all.i: gtest/gtest-all.cc.i
-
-.PHONY : gtest/gtest-all.i
+.PHONY : main.i
 
 # target to preprocess a source file
-gtest/gtest-all.cc.i:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.i
-.PHONY : gtest/gtest-all.cc.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-gtest/gtest-all.s: gtest/gtest-all.cc.s
+main.s: main.cpp.s
 
-.PHONY : gtest/gtest-all.s
-
-# target to generate assembly for a file
-gtest/gtest-all.cc.s:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.s
-.PHONY : gtest/gtest-all.cc.s
-
-gtest/gtest_main.o: gtest/gtest_main.cc.o
-
-.PHONY : gtest/gtest_main.o
-
-# target to build an object file
-gtest/gtest_main.cc.o:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o
-.PHONY : gtest/gtest_main.cc.o
-
-gtest/gtest_main.i: gtest/gtest_main.cc.i
-
-.PHONY : gtest/gtest_main.i
-
-# target to preprocess a source file
-gtest/gtest_main.cc.i:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.i
-.PHONY : gtest/gtest_main.cc.i
-
-gtest/gtest_main.s: gtest/gtest_main.cc.s
-
-.PHONY : gtest/gtest_main.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-gtest/gtest_main.cc.s:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.s
-.PHONY : gtest/gtest_main.cc.s
-
-vector_testing.o: vector_testing.cpp.o
-
-.PHONY : vector_testing.o
-
-# target to build an object file
-vector_testing.cpp.o:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/vector_testing.cpp.o
-.PHONY : vector_testing.cpp.o
-
-vector_testing.i: vector_testing.cpp.i
-
-.PHONY : vector_testing.i
-
-# target to preprocess a source file
-vector_testing.cpp.i:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/vector_testing.cpp.i
-.PHONY : vector_testing.cpp.i
-
-vector_testing.s: vector_testing.cpp.s
-
-.PHONY : vector_testing.s
-
-# target to generate assembly for a file
-vector_testing.cpp.s:
-	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/vector_testing.cpp.s
-.PHONY : vector_testing.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/vector_testing.dir/build.make CMakeFiles/vector_testing.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -267,21 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... vector_testing"
 	@echo "... edit_cache"
-	@echo "... counted.o"
-	@echo "... counted.i"
-	@echo "... counted.s"
-	@echo "... fault_injection.o"
-	@echo "... fault_injection.i"
-	@echo "... fault_injection.s"
-	@echo "... gtest/gtest-all.o"
-	@echo "... gtest/gtest-all.i"
-	@echo "... gtest/gtest-all.s"
-	@echo "... gtest/gtest_main.o"
-	@echo "... gtest/gtest_main.i"
-	@echo "... gtest/gtest_main.s"
-	@echo "... vector_testing.o"
-	@echo "... vector_testing.i"
-	@echo "... vector_testing.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

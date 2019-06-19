@@ -57,90 +57,30 @@ include CMakeFiles/vector_testing.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/vector_testing.dir/flags.make
 
-CMakeFiles/vector_testing.dir/vector_testing.cpp.o: CMakeFiles/vector_testing.dir/flags.make
-CMakeFiles/vector_testing.dir/vector_testing.cpp.o: ../vector_testing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vector_testing.dir/vector_testing.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector_testing.dir/vector_testing.cpp.o -c /home/blagoi/Documents/EXAM/VECTOR/vector_testing.cpp
+CMakeFiles/vector_testing.dir/main.cpp.o: CMakeFiles/vector_testing.dir/flags.make
+CMakeFiles/vector_testing.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vector_testing.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector_testing.dir/main.cpp.o -c /home/blagoi/Documents/EXAM/VECTOR/main.cpp
 
-CMakeFiles/vector_testing.dir/vector_testing.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector_testing.dir/vector_testing.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/blagoi/Documents/EXAM/VECTOR/vector_testing.cpp > CMakeFiles/vector_testing.dir/vector_testing.cpp.i
+CMakeFiles/vector_testing.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector_testing.dir/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/blagoi/Documents/EXAM/VECTOR/main.cpp > CMakeFiles/vector_testing.dir/main.cpp.i
 
-CMakeFiles/vector_testing.dir/vector_testing.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector_testing.dir/vector_testing.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/blagoi/Documents/EXAM/VECTOR/vector_testing.cpp -o CMakeFiles/vector_testing.dir/vector_testing.cpp.s
-
-CMakeFiles/vector_testing.dir/counted.cpp.o: CMakeFiles/vector_testing.dir/flags.make
-CMakeFiles/vector_testing.dir/counted.cpp.o: ../counted.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/vector_testing.dir/counted.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector_testing.dir/counted.cpp.o -c /home/blagoi/Documents/EXAM/VECTOR/counted.cpp
-
-CMakeFiles/vector_testing.dir/counted.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector_testing.dir/counted.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/blagoi/Documents/EXAM/VECTOR/counted.cpp > CMakeFiles/vector_testing.dir/counted.cpp.i
-
-CMakeFiles/vector_testing.dir/counted.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector_testing.dir/counted.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/blagoi/Documents/EXAM/VECTOR/counted.cpp -o CMakeFiles/vector_testing.dir/counted.cpp.s
-
-CMakeFiles/vector_testing.dir/fault_injection.cpp.o: CMakeFiles/vector_testing.dir/flags.make
-CMakeFiles/vector_testing.dir/fault_injection.cpp.o: ../fault_injection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/vector_testing.dir/fault_injection.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector_testing.dir/fault_injection.cpp.o -c /home/blagoi/Documents/EXAM/VECTOR/fault_injection.cpp
-
-CMakeFiles/vector_testing.dir/fault_injection.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector_testing.dir/fault_injection.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/blagoi/Documents/EXAM/VECTOR/fault_injection.cpp > CMakeFiles/vector_testing.dir/fault_injection.cpp.i
-
-CMakeFiles/vector_testing.dir/fault_injection.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector_testing.dir/fault_injection.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/blagoi/Documents/EXAM/VECTOR/fault_injection.cpp -o CMakeFiles/vector_testing.dir/fault_injection.cpp.s
-
-CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o: CMakeFiles/vector_testing.dir/flags.make
-CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o: ../gtest/gtest-all.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o -c /home/blagoi/Documents/EXAM/VECTOR/gtest/gtest-all.cc
-
-CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/blagoi/Documents/EXAM/VECTOR/gtest/gtest-all.cc > CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.i
-
-CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/blagoi/Documents/EXAM/VECTOR/gtest/gtest-all.cc -o CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.s
-
-CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o: CMakeFiles/vector_testing.dir/flags.make
-CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o: ../gtest/gtest_main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o -c /home/blagoi/Documents/EXAM/VECTOR/gtest/gtest_main.cc
-
-CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/blagoi/Documents/EXAM/VECTOR/gtest/gtest_main.cc > CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.i
-
-CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/blagoi/Documents/EXAM/VECTOR/gtest/gtest_main.cc -o CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.s
+CMakeFiles/vector_testing.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector_testing.dir/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/blagoi/Documents/EXAM/VECTOR/main.cpp -o CMakeFiles/vector_testing.dir/main.cpp.s
 
 # Object files for target vector_testing
 vector_testing_OBJECTS = \
-"CMakeFiles/vector_testing.dir/vector_testing.cpp.o" \
-"CMakeFiles/vector_testing.dir/counted.cpp.o" \
-"CMakeFiles/vector_testing.dir/fault_injection.cpp.o" \
-"CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o" \
-"CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o"
+"CMakeFiles/vector_testing.dir/main.cpp.o"
 
 # External object files for target vector_testing
 vector_testing_EXTERNAL_OBJECTS =
 
-vector_testing: CMakeFiles/vector_testing.dir/vector_testing.cpp.o
-vector_testing: CMakeFiles/vector_testing.dir/counted.cpp.o
-vector_testing: CMakeFiles/vector_testing.dir/fault_injection.cpp.o
-vector_testing: CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o
-vector_testing: CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o
+vector_testing: CMakeFiles/vector_testing.dir/main.cpp.o
 vector_testing: CMakeFiles/vector_testing.dir/build.make
 vector_testing: CMakeFiles/vector_testing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable vector_testing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable vector_testing"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vector_testing.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

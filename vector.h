@@ -235,7 +235,24 @@ public:
     }
 
     void shrink_to_fit() {
-        // todo
+        if (!is_big()) return;
+
+        make_unique();
+
+        auto tmp_array = static_cast<T *>(::operator new(size() * sizeof(T)));
+
+        size_t tmp_size_var = size();
+        size_t tmp_capacity_var = size();
+        for (size_t i = 0; i != tmp_size_var; ++i) {
+            new(tmp_array + i) T(buffer.many_elements->_array[i]);
+            buffer.many_elements->_array[i].~T();
+        }
+        ::operator delete(buffer.many_elements->_array);
+
+        buffer.many_elements->_array = tmp_array;
+        buffer.many_elements->_size = tmp_size_var;
+        buffer.many_elements->_capacity = tmp_capacity_var;
+        buffer.many_elements->_links = 1;
     }
 
     void resize() {

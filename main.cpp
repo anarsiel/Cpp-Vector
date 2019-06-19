@@ -30,16 +30,20 @@ int main() {
     a.push_back(3);
     a.push_back(9);
 
+    std::cout << a.capacity() << std::endl;
+    a.shrink_to_fit();
+    std::cout << a.capacity() << std::endl;
+
     for (size_t i = 0; i < a.size(); ++i)
         std::cout << a[i] << ' ';
     std::cout << std::endl;
 
-    a.clear();
-
-    a.push_back(2);
-    for (size_t i = 0; i < a.size(); ++i)
-        std::cout << a[i] << ' ';
-    std::cout << std::endl;
+//    a.clear();
+//
+//    a.push_back(2);
+//    for (size_t i = 0; i < a.size(); ++i)
+//        std::cout << a[i] << ' ';
+//    std::cout << std::endl;
 
     return 0;
 }

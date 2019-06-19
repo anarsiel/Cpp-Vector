@@ -4,11 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/blagoi/Documents/EXAM/VECTOR/counted.cpp" "/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir/counted.cpp.o"
-  "/home/blagoi/Documents/EXAM/VECTOR/fault_injection.cpp" "/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir/fault_injection.cpp.o"
-  "/home/blagoi/Documents/EXAM/VECTOR/gtest/gtest-all.cc" "/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o"
-  "/home/blagoi/Documents/EXAM/VECTOR/gtest/gtest_main.cc" "/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o"
-  "/home/blagoi/Documents/EXAM/VECTOR/vector_testing.cpp" "/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir/vector_testing.cpp.o"
+  "/home/blagoi/Documents/EXAM/VECTOR/main.cpp" "/home/blagoi/Documents/EXAM/VECTOR/cmake-build-debug/CMakeFiles/vector_testing.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
