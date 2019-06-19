@@ -794,75 +794,75 @@ TEST(correctness, push_back_element_of_itself_single)
 //    });
 //}
 //
-//TEST(correctness, comparison_empty_empty)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c, c2;
-//        EXPECT_TRUE(c == c2);
-//        EXPECT_FALSE(c != c2);
-//        EXPECT_TRUE(c <= c2);
-//        EXPECT_FALSE(c < c2);
-//        EXPECT_TRUE(c >= c2);
-//        EXPECT_FALSE(c > c2);
-//    });
-//}
-//
-//TEST(correctness, comparison_empty_non_empty)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c, c2;
-//        c2.push_back(1);
-//        EXPECT_FALSE(c == c2);
-//        EXPECT_TRUE(c != c2);
-//        EXPECT_TRUE(c <= c2);
-//        EXPECT_TRUE(c < c2);
-//        EXPECT_FALSE(c >= c2);
-//        EXPECT_FALSE(c > c2);
-//    });
-//}
-//
-//TEST(correctness, comparison)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c, c2;
-//        c.push_back(1);
-//        c2.push_back(2);
-//        EXPECT_FALSE(c == c2);
-//        EXPECT_TRUE(c != c2);
-//        EXPECT_TRUE(c <= c2);
-//        EXPECT_TRUE(c < c2);
-//        EXPECT_FALSE(c >= c2);
-//        EXPECT_FALSE(c > c2);
-//    });
-//}
-//
-//TEST(correctness, comparison_long)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c, c2;
-//        c.push_back(5);
-//        c.push_back(5);
-//        c.push_back(1);
-//        c.push_back(5);
-//        c2.push_back(5);
-//        c2.push_back(5);
-//        c2.push_back(2);
-//        EXPECT_FALSE(c == c2);
-//        EXPECT_TRUE(c != c2);
-//        EXPECT_TRUE(c <= c2);
-//        EXPECT_TRUE(c < c2);
-//        EXPECT_FALSE(c >= c2);
-//        EXPECT_FALSE(c > c2);
-//    });
-//}
+TEST(correctness, comparison_empty_empty)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c, c2;
+        EXPECT_TRUE(c == c2);
+        EXPECT_FALSE(c != c2);
+        EXPECT_TRUE(c <= c2);
+        EXPECT_FALSE(c < c2);
+        EXPECT_TRUE(c >= c2);
+        EXPECT_FALSE(c > c2);
+    });
+}
+
+TEST(correctness, comparison_empty_non_empty)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c, c2;
+        c2.push_back(1);
+        EXPECT_FALSE(c == c2);
+        EXPECT_TRUE(c != c2);
+        EXPECT_TRUE(c <= c2);
+        EXPECT_TRUE(c < c2);
+        EXPECT_FALSE(c >= c2);
+        EXPECT_FALSE(c > c2);
+    });
+}
+
+TEST(correctness, comparison)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c, c2;
+        c.push_back(1);
+        c2.push_back(2);
+        EXPECT_FALSE(c == c2);
+        EXPECT_TRUE(c != c2);
+        EXPECT_TRUE(c <= c2);
+        EXPECT_TRUE(c < c2);
+        EXPECT_FALSE(c >= c2);
+        EXPECT_FALSE(c > c2);
+    });
+}
+
+TEST(correctness, comparison_long)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c, c2;
+        c.push_back(5);
+        c.push_back(5);
+        c.push_back(1);
+        c.push_back(5);
+        c2.push_back(5);
+        c2.push_back(5);
+        c2.push_back(2);
+        EXPECT_FALSE(c == c2);
+        EXPECT_TRUE(c != c2);
+        EXPECT_TRUE(c <= c2);
+        EXPECT_TRUE(c < c2);
+        EXPECT_FALSE(c >= c2);
+        EXPECT_FALSE(c > c2);
+    });
+}
 //
 //TEST(correctness, swap_empty_self)
 //{

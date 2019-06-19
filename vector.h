@@ -28,7 +28,7 @@ private:
                 : _size(other._size), _capacity(other._capacity), _links(other._links), _array(other._array) {}
 
         ~many_elements_type() {
-            for (size_t i = 0; i < _size; ++i) {
+            for (size_t i = 0; i !=_size; ++i) {
                 _array[i].~T();
             }
             ::operator delete(_array);
@@ -271,7 +271,7 @@ private:
         auto tmp = static_cast<T *>(::operator new(get_capacity() * sizeof(T)));
         buffer.many_elements->_links--;
 
-        for (size_t i = 0; i < size(); ++i) {
+        for (size_t i = 0; i != size(); ++i) {
             new(tmp + i) T(buffer.many_elements->_array[i]);
         }
 
@@ -289,7 +289,7 @@ private:
 
             size_t tmp_size_var = size();
             size_t tmp_capacity_var = capacity();
-            for (size_t i = 0; i < tmp_size_var; ++i) {
+            for (size_t i = 0; i != tmp_size_var; ++i) {
                 new(tmp_array + i) T(buffer.many_elements->_array[i]);
                 buffer.many_elements->_array[i].~T();
             }
@@ -301,6 +301,46 @@ private:
             buffer.many_elements->_links = 1;
 
         }
+    }
+
+    friend bool operator==(vector const &a, vector const &b) {
+        if (a.size() != b.size()) return false;
+
+        for (size_t i = 0; i != a.size(); ++i) {
+            if (a[i] != b[i]) return false;
+        }
+
+        return true;
+    }
+
+    friend bool operator!=(vector const &a, vector const &b) {
+        return !(a == b);
+    }
+
+    friend bool operator<(vector const &a, vector const &b) {
+        for (size_t i = 0; i != std::min(a.size(), b.size()); ++i) {
+            if (a[i] < b[i]) return true;
+            if (a[i] > b[i]) return false;
+        }
+
+        return a.size() < b.size();
+    }
+
+    friend bool operator<=(vector const &a, vector const &b) {
+        for (size_t i = 0; i != std::min(a.size(), b.size()); ++i) {
+            if (a[i] < b[i]) return true;
+            if (a[i] > b[i]) return false;
+        }
+
+        return a.size() <= b.size();
+    }
+
+    friend bool operator>(vector const &a, vector const &b) {
+        return !(a <= b);
+    }
+
+    friend bool operator>=(vector const &a, vector const &b) {
+        return !(a < b);
     }
 };
 
