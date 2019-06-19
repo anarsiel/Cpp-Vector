@@ -167,9 +167,6 @@ public:
             T* tmp = static_cast<T*> (::operator new(sizeof(T)));
             new (tmp) T(buffer.many_elements->_array[0]);
 
-//            buffer.many_elements->_array[0].~T();
-//            buffer.many_elements->_array[1].~T();
-
             delete(buffer.many_elements);
 
             new (&buffer.one_element) T(*tmp);
@@ -183,6 +180,66 @@ public:
 
         (buffer.many_elements->_array[size() - 1]).~T();
         buffer.many_elements->_size--;
+    }
+
+    void reserve(size_t new_capacity) {
+        if (new_capacity < capacity()) return;
+
+        if (empty()) {
+            if (new_capacity > 1) {
+                _empty = false;
+                _is_big = true;
+
+                auto tmp_array = static_cast<T *>(::operator new(new_capacity * sizeof(T)));
+
+                buffer.many_elements = new many_elements_type(0, new_capacity, 1, tmp_array);
+            }
+            return;
+        }
+
+        if (contains_only_one()) {
+            _empty = false;
+            _is_big = true;
+
+            T *tmp_elem = static_cast<T *>(::operator new(sizeof(T)));
+            new (tmp_elem) T(buffer.one_element);
+
+            buffer.one_element.~T();
+
+            T* array_tmp = static_cast<T *>(::operator new(new_capacity * sizeof(T)));
+            buffer.many_elements = new many_elements_type(1, new_capacity, 1, array_tmp);
+
+            new (&buffer.many_elements->_array[0]) T(*tmp_elem);
+            delete(tmp_elem);
+
+            _is_big = true;
+            return;
+        }
+
+        make_unique();
+
+        auto tmp_array = static_cast<T *>(::operator new(new_capacity * sizeof(T)));
+
+        size_t tmp_size_var = size();
+        size_t tmp_capacity_var = new_capacity;
+        for (size_t i = 0; i != tmp_size_var; ++i) {
+            new(tmp_array + i) T(buffer.many_elements->_array[i]);
+            buffer.many_elements->_array[i].~T();
+        }
+        ::operator delete(buffer.many_elements->_array);
+
+        buffer.many_elements->_array = tmp_array;
+        buffer.many_elements->_size = tmp_size_var;
+        buffer.many_elements->_capacity = tmp_capacity_var;
+        buffer.many_elements->_links = 1;
+    }
+
+    void shrink_to_fit() {
+        // todo
+    }
+
+    void resize() {
+        // todo
     }
 
     T* data() {
@@ -223,7 +280,11 @@ public:
         return get_capacity();
     }
 
-    void clear() {}
+    void clear() {
+        while (size() != 0) {
+            pop_back();
+        }
+    }
 
     vector& operator=(vector const &other) {
         while (size() > 0) {
@@ -240,67 +301,6 @@ public:
         }
 
         return *this;
-    }
-
-private:
-    bool _is_big, _empty;
-
-    union U {
-        U() {}
-        ~U() {};
-
-        many_elements_type* many_elements;
-        T one_element;
-    } buffer;
-
-    bool is_big() const {
-        return _is_big;
-    }
-
-    bool contains_only_one() const {
-        return !is_big() && !empty();
-    }
-
-    size_t get_capacity() const { return buffer.many_elements->_capacity; }
-    size_t get_amount_of_links() const { return buffer.many_elements->_links; }
-    bool unique() { return !is_big() || (is_big() && (get_amount_of_links() == 1)); }
-
-    void make_unique() {
-        if (unique()) return;
-
-        auto tmp = static_cast<T *>(::operator new(get_capacity() * sizeof(T)));
-        buffer.many_elements->_links--;
-
-        for (size_t i = 0; i != size(); ++i) {
-            new(tmp + i) T(buffer.many_elements->_array[i]);
-        }
-
-        auto tmp_buffer = new many_elements_type(size(), capacity(), get_amount_of_links(), tmp);
-
-        buffer.many_elements = tmp_buffer;
-    }
-
-    // object must be unique
-    void ensure_capacity() {
-        if (!is_big()) return;
-
-        if (size() == get_capacity()) {
-            auto tmp_array = static_cast<T *>(::operator new(2 * get_capacity() * sizeof(T)));
-
-            size_t tmp_size_var = size();
-            size_t tmp_capacity_var = capacity();
-            for (size_t i = 0; i != tmp_size_var; ++i) {
-                new(tmp_array + i) T(buffer.many_elements->_array[i]);
-                buffer.many_elements->_array[i].~T();
-            }
-            ::operator delete(buffer.many_elements->_array);
-
-            buffer.many_elements->_array = tmp_array;
-            buffer.many_elements->_size = tmp_size_var;
-            buffer.many_elements->_capacity = 2 * tmp_capacity_var;
-            buffer.many_elements->_links = 1;
-
-        }
     }
 
     friend bool operator==(vector const &a, vector const &b) {
@@ -341,6 +341,73 @@ private:
 
     friend bool operator>=(vector const &a, vector const &b) {
         return !(a < b);
+    }
+
+    friend bool swap(vector const &a, vector const &b) {
+        // todo
+        return true;
+    }
+
+private:
+    bool _is_big, _empty;
+
+    union U {
+        U() {}
+        ~U() {};
+
+        many_elements_type* many_elements;
+        T one_element;
+    } buffer;
+
+    bool is_big() const {
+        return _is_big;
+    }
+
+    bool contains_only_one() const {
+        return !is_big() && !empty();
+    }
+
+    size_t get_capacity() const { return buffer.many_elements->_capacity; }
+
+    size_t get_amount_of_links() const { return buffer.many_elements->_links; }
+
+    bool unique() { return !is_big() || (is_big() && (get_amount_of_links() == 1)); }
+
+    void make_unique() {
+        if (unique()) return;
+
+        auto tmp = static_cast<T *>(::operator new(get_capacity() * sizeof(T)));
+        buffer.many_elements->_links--;
+
+        for (size_t i = 0; i != size(); ++i) {
+            new(tmp + i) T(buffer.many_elements->_array[i]);
+        }
+
+        auto tmp_buffer = new many_elements_type(size(), capacity(), get_amount_of_links(), tmp);
+
+        buffer.many_elements = tmp_buffer;
+    }
+
+    // object must be unique
+    void ensure_capacity() {
+        if (!is_big()) return;
+
+        if (size() == get_capacity()) {
+            auto tmp_array = static_cast<T *>(::operator new(2 * get_capacity() * sizeof(T)));
+
+            size_t tmp_size_var = size();
+            size_t tmp_capacity_var = capacity();
+            for (size_t i = 0; i != tmp_size_var; ++i) {
+                new(tmp_array + i) T(buffer.many_elements->_array[i]);
+                buffer.many_elements->_array[i].~T();
+            }
+            ::operator delete(buffer.many_elements->_array);
+
+            buffer.many_elements->_array = tmp_array;
+            buffer.many_elements->_size = tmp_size_var;
+            buffer.many_elements->_capacity = 2 * tmp_capacity_var;
+            buffer.many_elements->_links = 1;
+        }
     }
 };
 

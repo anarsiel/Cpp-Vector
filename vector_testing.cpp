@@ -414,51 +414,51 @@ TEST(correctness, const_subscript)
 //    });
 //}
 //
-//TEST(correctness, reserve)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c;
-//        c.reserve(10);
-//        c.push_back(4);
-//        c.push_back(8);
-//        c.push_back(15);
-//        c.push_back(16);
-//        c.push_back(23);
-//        c.push_back(42);
-//
-//        EXPECT_EQ(4, c[0]);
-//        EXPECT_EQ(8, c[1]);
-//        EXPECT_EQ(15, c[2]);
-//        EXPECT_EQ(16, c[3]);
-//        EXPECT_EQ(23, c[4]);
-//        EXPECT_EQ(42, c[5]);
-//    });
-//}
-//
-//TEST(correctness, reserve_2)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c;
-//        c.push_back(4);
-//        c.push_back(8);
-//        c.push_back(15);
-//        c.push_back(16);
-//        c.push_back(23);
-//        c.push_back(42);
-//        c.reserve(100);
-//
-//        EXPECT_EQ(4, c[0]);
-//        EXPECT_EQ(8, c[1]);
-//        EXPECT_EQ(15, c[2]);
-//        EXPECT_EQ(16, c[3]);
-//        EXPECT_EQ(23, c[4]);
-//        EXPECT_EQ(42, c[5]);
-//    });
-//}
+TEST(correctness, reserve)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c;
+        c.reserve(10);
+        c.push_back(4);
+        c.push_back(8);
+        c.push_back(15);
+        c.push_back(16);
+        c.push_back(23);
+        c.push_back(42);
+
+        EXPECT_EQ(4, c[0]);
+        EXPECT_EQ(8, c[1]);
+        EXPECT_EQ(15, c[2]);
+        EXPECT_EQ(16, c[3]);
+        EXPECT_EQ(23, c[4]);
+        EXPECT_EQ(42, c[5]);
+    });
+}
+
+TEST(correctness, reserve_2)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c;
+        c.push_back(4);
+        c.push_back(8);
+        c.push_back(15);
+        c.push_back(16);
+        c.push_back(23);
+        c.push_back(42);
+        c.reserve(100);
+
+        EXPECT_EQ(4, c[0]);
+        EXPECT_EQ(8, c[1]);
+        EXPECT_EQ(15, c[2]);
+        EXPECT_EQ(16, c[3]);
+        EXPECT_EQ(23, c[4]);
+        EXPECT_EQ(42, c[5]);
+    });
+}
 
 TEST(correctness, front_back)
 {
@@ -567,7 +567,7 @@ TEST(correctness, data)
         EXPECT_EQ(&cc[0], cc.data());
     });
 }
-
+//
 //TEST(correctness, push_back_element_of_itself)
 //{
 //    faulty_run([]
@@ -972,48 +972,48 @@ TEST(correctness, comparison_long)
 //    });
 //}
 //
-//TEST(exceptions, nothrow_default_ctor)
-//{
-//    faulty_run([]
-//    {
-//        EXPECT_NO_THROW(
-//        {
-//            counted::no_new_instances_guard g;
-//            container c;
-//        });
-//    });
-//}
-//
-//TEST(exceptions, nothrow_subscript)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container c;
-//        c.push_back(1);
-//        c.push_back(2);
-//        c.push_back(3);
-//
-//        EXPECT_NO_THROW(
-//        {
-//            container const& cc = c;
-//            cc[0];
-//        });
-//    });
-//}
-//
-//TEST(exceptions, reserve)
-//{
-//    faulty_run([]
-//    {
-//        counted::no_new_instances_guard g;
-//        container_int c;
-//        c.reserve(10);
-//
-//        EXPECT_NO_THROW(
-//        {
-//            for (size_t i = 0; i != 10; ++i)
-//                c.push_back(42);
-//        });
-//    });
-//}
+TEST(exceptions, nothrow_default_ctor)
+{
+    faulty_run([]
+    {
+        EXPECT_NO_THROW(
+        {
+            counted::no_new_instances_guard g;
+            container c;
+        });
+    });
+}
+
+TEST(exceptions, nothrow_subscript)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container c;
+        c.push_back(1);
+        c.push_back(2);
+        c.push_back(3);
+
+        EXPECT_NO_THROW(
+        {
+            container const& cc = c;
+            cc[0];
+        });
+    });
+}
+
+TEST(exceptions, reserve)
+{
+    faulty_run([]
+    {
+        counted::no_new_instances_guard g;
+        container_int c;
+        c.reserve(10);
+
+        EXPECT_NO_THROW(
+        {
+            for (size_t i = 0; i != 10; ++i)
+                c.push_back(42);
+        });
+    });
+}

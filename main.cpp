@@ -30,16 +30,15 @@ int main() {
     a.push_back(3);
     a.push_back(9);
 
-    b = a;
-
-    a[0] = 6;
-
     for (size_t i = 0; i < a.size(); ++i)
         std::cout << a[i] << ' ';
     std::cout << std::endl;
 
+    a.clear();
+
+    a.push_back(2);
     for (size_t i = 0; i < a.size(); ++i)
-        std::cout << b[i] << ' ';
+        std::cout << a[i] << ' ';
     std::cout << std::endl;
 
     return 0;
