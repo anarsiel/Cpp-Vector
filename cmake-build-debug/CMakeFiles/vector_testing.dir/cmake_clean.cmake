@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/vector_testing.dir/main.cpp.o"
+  "CMakeFiles/vector_testing.dir/vector_testing.cpp.o"
+  "CMakeFiles/vector_testing.dir/counted.cpp.o"
+  "CMakeFiles/vector_testing.dir/fault_injection.cpp.o"
+  "CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o"
+  "CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o"
   "vector_testing.pdb"
   "vector_testing"
 )

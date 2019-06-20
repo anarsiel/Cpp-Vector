@@ -25,17 +25,18 @@ int main() {
 //    for (size_t i = 0; i < v.size(); ++i)
 //        std::cout << v[i].a << ' ' << v[i].b << std::endl;
 
-    vector<int> a, b;
-    a.push_back(2);
-    a.push_back(3);
-    a.push_back(9);
+    vector<int> a, b, c;
+    c.insert(c.begin(), 15);
+    auto it = c.begin();
+    auto it2 = it + 1;
+//    c.insert(c.begin() + 1, 42);
+//    c.insert(c.begin() + 1, 16);
+//    c.insert(c.begin() + 2, 23);
+//    c.insert(c.begin(), 4);
+//    c.insert(c.begin() + 1, 8);
 
-    std::cout << a.capacity() << std::endl;
-    a.shrink_to_fit();
-    std::cout << a.capacity() << std::endl;
-
-    for (size_t i = 0; i < a.size(); ++i)
-        std::cout << a[i] << ' ';
+    for (size_t i = 0; i < c.size(); ++i)
+        std::cout << c[i] << ' ';
     std::cout << std::endl;
 
 //    a.clear();

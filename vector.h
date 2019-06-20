@@ -9,10 +9,11 @@
 #include <memory>
 #include <string.h>
 
-template <typename T>
+template<typename T>
 struct vector {
-//    typedef T value_type;
-//    typedef ? iterator;
+
+    typedef T value_type;
+//    typedef iterator;
 //    typedef ? const_iterator;
 //    typedef ? reverse_iterator;
 //    typedef ? const_reverse_iterator;
@@ -21,14 +22,14 @@ private:
     struct many_elements_type {
         many_elements_type() : _size(0), _capacity(0), _links(0), _array(nullptr) {}
 
-        many_elements_type(size_t _size, size_t capacity, size_t links_count, T* _array)
-                : _size(_size),  _capacity(capacity), _links(links_count), _array(_array) {};
+        many_elements_type(size_t _size, size_t capacity, size_t links_count, T *_array)
+                : _size(_size), _capacity(capacity), _links(links_count), _array(_array) {};
 
         many_elements_type(many_elements_type &other)
                 : _size(other._size), _capacity(other._capacity), _links(other._links), _array(other._array) {}
 
         ~many_elements_type() {
-            for (size_t i = 0; i !=_size; ++i) {
+            for (size_t i = 0; i != _size; ++i) {
                 _array[i].~T();
             }
             ::operator delete(_array);
@@ -38,14 +39,14 @@ private:
         size_t _capacity;
         size_t _links;
 
-        T* _array;
+        T *_array;
     };
 
 public:
-    vector() noexcept : _is_big(false), _empty(true){};
+    vector() noexcept : _is_big(false), _empty(true) {};
 
-    vector(T const & element) : _is_big(false), _empty(false) {
-        new (&buffer.one_element) T(element);
+    vector(T const &element) : _is_big(false), _empty(false) {
+        new(&buffer.one_element) T(element);
     }
 
     vector(vector const &other) {
@@ -53,7 +54,7 @@ public:
         _empty = other.empty();
 
         if (contains_only_one()) {
-            new (&buffer.one_element) T(other.buffer.one_element);
+            new(&buffer.one_element) T(other.buffer.one_element);
         } else if (is_big()) {
             buffer.many_elements = other.buffer.many_elements;
             ++buffer.many_elements->_links;
@@ -66,12 +67,12 @@ public:
         } else if (is_big()) {
             --buffer.many_elements->_links;
             if (get_amount_of_links() == 0) {
-                delete(buffer.many_elements);
+                delete (buffer.many_elements);
             }
         }
     }
 
-    template <typename InputIterator>
+    template<typename InputIterator>
     vector(InputIterator first, InputIterator last) {
         // todo
     }
@@ -122,25 +123,25 @@ public:
     }
 
     void push_back(T const &element) {
-        T* element_copy = static_cast<T *>(::operator new(sizeof(T)));
+        T *element_copy = static_cast<T *>(::operator new(sizeof(T)));
         new(element_copy) T(element);
 
         if (empty()) {
-            new (&buffer.one_element) T(*element_copy);
+            new(&buffer.one_element) T(*element_copy);
             _empty = false;
         } else if (contains_only_one()) {
             T *tmp_elem = static_cast<T *>(::operator new(sizeof(T)));
-            new (tmp_elem) T(buffer.one_element);
+            new(tmp_elem) T(buffer.one_element);
 
             buffer.one_element.~T();
 
-            T* array_tmp = static_cast<T *>(::operator new(4 * sizeof(T)));
+            T *array_tmp = static_cast<T *>(::operator new(4 * sizeof(T)));
             buffer.many_elements = new many_elements_type(2, 4, 1, array_tmp);
 
-            new (&buffer.many_elements->_array[0]) T(*tmp_elem);
-            delete(tmp_elem);
+            new(&buffer.many_elements->_array[0]) T(*tmp_elem);
+            delete (tmp_elem);
 
-            new (&buffer.many_elements->_array[1]) T(*element_copy);
+            new(&buffer.many_elements->_array[1]) T(*element_copy);
 
             _is_big = true;
         } else {
@@ -151,7 +152,7 @@ public:
             buffer.many_elements->_size++;
         }
 
-        delete(element_copy);
+        delete (element_copy);
     }
 
     void pop_back() {
@@ -164,13 +165,13 @@ public:
         if (size() == 2) {
             make_unique();
 
-            T* tmp = static_cast<T*> (::operator new(sizeof(T)));
-            new (tmp) T(buffer.many_elements->_array[0]);
+            T *tmp = static_cast<T *> (::operator new(sizeof(T)));
+            new(tmp) T(buffer.many_elements->_array[0]);
 
-            delete(buffer.many_elements);
+            delete (buffer.many_elements);
 
-            new (&buffer.one_element) T(*tmp);
-            delete(tmp);
+            new(&buffer.one_element) T(*tmp);
+            delete (tmp);
             _is_big = false;
             return;
         }
@@ -202,15 +203,15 @@ public:
             _is_big = true;
 
             T *tmp_elem = static_cast<T *>(::operator new(sizeof(T)));
-            new (tmp_elem) T(buffer.one_element);
+            new(tmp_elem) T(buffer.one_element);
 
             buffer.one_element.~T();
 
-            T* array_tmp = static_cast<T *>(::operator new(new_capacity * sizeof(T)));
+            T *array_tmp = static_cast<T *>(::operator new(new_capacity * sizeof(T)));
             buffer.many_elements = new many_elements_type(1, new_capacity, 1, array_tmp);
 
-            new (&buffer.many_elements->_array[0]) T(*tmp_elem);
-            delete(tmp_elem);
+            new(&buffer.many_elements->_array[0]) T(*tmp_elem);
+            delete (tmp_elem);
 
             _is_big = true;
             return;
@@ -259,7 +260,7 @@ public:
         // todo
     }
 
-    T* data() {
+    T *data() {
         if (empty())
             return nullptr;
 
@@ -270,7 +271,7 @@ public:
         return buffer.many_elements->_array;
     }
 
-    T const * data() const {
+    T const *data() const {
         if (empty())
             return nullptr;
 
@@ -303,7 +304,7 @@ public:
         }
     }
 
-    vector& operator=(vector const &other) {
+    vector &operator=(vector const &other) {
         while (size() > 0) {
             pop_back();
         }
@@ -360,9 +361,197 @@ public:
         return !(a < b);
     }
 
-    friend bool swap(vector const &a, vector const &b) {
-        // todo
-        return true;
+    friend void swap(vector const &a, vector const &b) {
+        if (a.contains_only_one() && b.contains_only_one()) {
+            swap(a.buffer.one_element, b.buffer.one_element);
+        } else if (a.is_big() && a.is_big()) {
+            U *tmp = b.buffer.many_elements;
+            b.buffer.many_elements = a.buffer.many_elements;
+            a.any_obj.big = tmp;
+        }
+    }
+
+    template<typename V>
+    struct vector_iterator : std::iterator<std::random_access_iterator_tag, V> {
+
+        friend vector;
+
+        vector_iterator() = default;
+
+        ~vector_iterator() = default;
+
+        vector_iterator(V* _data) : _data(_data) {}
+
+        vector_iterator(vector_iterator const &other) : _data(other._data) {}
+
+//        vector_iterator &operator=(vector_iterator const &other) const {
+//            _data == other._data;
+//            return *this;
+//        }
+
+        bool operator==(vector_iterator const &other) const {
+            return _data == other._data;
+        }
+
+        bool operator!=(vector_iterator const &other) const {
+            return _data != other._data;
+        }
+
+        vector_iterator &operator++() {
+            ++_data;
+            return *this;
+        }
+
+        const vector_iterator operator++(int) {
+            vector_iterator tmp = vector_iterator(*this);
+            ++(*this);
+            return tmp;
+        }
+
+        vector_iterator &operator--() {
+            --_data;
+            return *this;
+        }
+
+        const vector_iterator operator--(int) {
+            vector_iterator tmp = vector_iterator(*this);
+            --(*this);
+            return tmp;
+        }
+
+        vector_iterator &operator+=(size_t x) {
+            _data += x;
+            return *this;
+        }
+
+        vector_iterator &operator-=(size_t x) {
+            _data -= x;
+            return *this;
+        }
+
+        vector_iterator operator+(size_t x) {
+            vector_iterator tmp = vector_iterator(*this);
+            tmp += x;
+            return tmp;
+        }
+
+        vector_iterator operator-(size_t x) {
+            vector_iterator tmp = vector_iterator(*this);
+            tmp -= x;
+            return tmp;
+        }
+
+        V& operator*() {
+            return *_data;
+        }
+
+        V* operator->() {
+            return _data;
+        }
+
+    private:
+        V* _data;
+    };
+
+    typedef vector_iterator<T> iterator;
+    typedef vector_iterator<T const> const_iterator;
+    typedef std::reverse_iterator<iterator> reverse_iterator;
+    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
+    iterator begin() {
+        if (is_big())
+            return iterator(buffer.many_elements->_array);
+
+        if (contains_only_one())
+            return iterator(&buffer.one_element);
+
+        return iterator(nullptr);
+    }
+
+    iterator end() {
+        if (is_big()) {
+            return iterator(buffer.many_elements->_array + size());
+        } else if (contains_only_one()) {
+            return iterator(&buffer.one_element + 1);
+        }
+
+        return iterator(nullptr);
+    }
+
+    const_iterator begin() const {
+        if (is_big()) {
+            return const_iterator(buffer.many_elements->_array);
+        } else if (contains_only_one()) {
+            return const_iterator(&buffer.one_element);
+        }
+
+        return const_iterator(nullptr);
+    }
+
+    const_iterator end() const {
+        if (is_big()) {
+            return const_iterator(buffer.many_elements->_array + size());
+        } else if (contains_only_one()) {
+            return const_iterator(&buffer.one_element + 1);
+        }
+
+        return const_iterator(nullptr);
+    }
+
+    reverse_iterator rbegin() {
+        return reverse_iterator(end());
+    }
+
+    reverse_iterator rend() {
+        return reverse_iterator(begin());
+    }
+
+    const_reverse_iterator rbegin() const {
+        return const_reverse_iterator(end());
+    }
+
+    const_reverse_iterator rend() const {
+        return const_reverse_iterator(begin());
+    }
+
+    void insert(iterator it, T const &x) {
+        vector tmp;
+
+        for (auto it1 = begin(); it1 != it; ++it1) {
+            tmp.push_back(*it1);
+        }
+
+        tmp.push_back(x);
+
+        for (auto it1 = it; it1 != end(); ++it1) {
+            tmp.push_back(*it1);
+        }
+
+        this->clear();
+        for (auto it1 = tmp.begin(); it1 != tmp.end(); ++it1) {
+            push_back(*it1);
+        }
+    }
+
+    void erase(iterator it1, iterator it2) {
+        vector tmp;
+
+        for (auto it = begin(); it != it1; ++it) {
+            tmp.push_back(*it);
+        }
+
+        for (auto it = it2; it != end(); ++it) {
+            tmp.push_back(*it);
+        }
+
+        this->clear();
+        for (auto it = tmp.begin(); it != tmp.end(); ++it) {
+            push_back(*it);
+        }
+    }
+
+    void erase(iterator it1) {
+        erase(it1, it1 + 1);
     }
 
 private:
@@ -370,9 +559,10 @@ private:
 
     union U {
         U() {}
+
         ~U() {};
 
-        many_elements_type* many_elements;
+        many_elements_type *many_elements;
         T one_element;
     } buffer;
 
