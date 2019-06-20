@@ -361,14 +361,59 @@ public:
         return !(a < b);
     }
 
-    friend void swap(vector const &a, vector const &b) {
+    friend void swap(vector &a, vector &b) {
+        bool f_a_1 = a._empty;
+        bool f_a_2 = a._is_big;
+        bool f_b_1 = b._empty;
+        bool f_b_2 = b._is_big;
+
         if (a.contains_only_one() && b.contains_only_one()) {
-            swap(a.buffer.one_element, b.buffer.one_element);
-        } else if (a.is_big() && a.is_big()) {
-            U *tmp = b.buffer.many_elements;
+            std::swap(a.buffer.one_element, b.buffer.one_element);
+        } else if (a.is_big() && b.is_big()) {
+            many_elements_type *tmp = b.buffer.many_elements;
             b.buffer.many_elements = a.buffer.many_elements;
-            a.any_obj.big = tmp;
+            a.buffer.many_elements = tmp;
+        } else if (a.contains_only_one() && b.empty()) {
+            new(&b.buffer.one_element) T(a.buffer.one_element);
+            a.clear();
+        } else if (a.contains_only_one() && b.is_big()) {
+            auto tmp = static_cast<T *>(::operator new(sizeof(T)));
+            new (tmp) T(a.buffer.one_element);
+
+            a.buffer.one_element.~T();
+
+            a.buffer.many_elements = b.buffer.many_elements;
+//            ::operator delete(b.buffer.many_elements);
+
+            new (&b.buffer.one_element) T(*tmp);
+            delete(tmp);
+        } else if (b.contains_only_one() && a.is_big()) {
+            auto tmp = static_cast<T *>(::operator new(sizeof(T)));
+            new (tmp) T(b.buffer.one_element);
+
+            b.clear();
+            b.buffer.many_elements = a.buffer.many_elements;
+            a.clear();
+            a.buffer.one_element = *tmp;
+        } else if (b.contains_only_one() && a.empty()) {
+            auto tmp = static_cast<T *>(::operator new(sizeof(T)));
+            new (tmp) T(b.buffer.one_element);
+
+            new(&a.buffer.one_element) T(*tmp);
+            delete(tmp);
+
+            b.clear();
+        } else if (a.is_big() && b.empty()) {
+            b.buffer.many_elements = a.buffer.many_elements;
+            a.clear();
+        } else if (b.is_big() && a.empty()) {
+            a.buffer.many_elements = b.buffer.many_elements;
         }
+
+        a._empty = f_b_1;
+        a._is_big = f_b_2;
+        b._empty = f_a_1;
+        b._is_big = f_a_2;
     }
 
     template<typename V>

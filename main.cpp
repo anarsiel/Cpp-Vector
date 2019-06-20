@@ -5,46 +5,30 @@
 #include <iostream>
 #include "vector.h"
 
-struct point {
-    point(){}
-    ~point(){}
-
-    point(int a, int b) : a(a), b(b) {}
-
-    int a, b;
-};
-
 int main() {
-//    int x = 239, y= 1488;
-//    vector<point> v;
-//    v.push_back({x, y});
-//    v.push_back({y, x});
-//    v.push_back({x - 20, x + 239});
-//    v.push_back({2, y});
-//
-//    for (size_t i = 0; i < v.size(); ++i)
-//        std::cout << v[i].a << ' ' << v[i].b << std::endl;
+    vector<int> c, c2;
 
-    vector<int> a, b, c;
-    c.insert(c.begin(), 15);
-    auto it = c.begin();
-    auto it2 = it + 1;
-//    c.insert(c.begin() + 1, 42);
-//    c.insert(c.begin() + 1, 16);
-//    c.insert(c.begin() + 2, 23);
-//    c.insert(c.begin(), 4);
-//    c.insert(c.begin() + 1, 8);
+    c.push_back(4);
+    c2.push_back(1);
+    c2.push_back(2);
+    c2.push_back(3);
+
+    std::cout << c.size() << ' ' << c2.size() << std::endl;
+
+    swap(c, c2);
+
+    std::cout << c.size() << ' ' << c2.size() << std::endl;
 
     for (size_t i = 0; i < c.size(); ++i)
         std::cout << c[i] << ' ';
     std::cout << std::endl;
 
-//    a.clear();
-//
-//    a.push_back(2);
-//    for (size_t i = 0; i < a.size(); ++i)
-//        std::cout << a[i] << ' ';
-//    std::cout << std::endl;
+    for (size_t i = 0; i < c2.size(); ++i)
+        std::cout << c2[i] << ' ';
 
+
+//    for (size_t i = 0; i < c2.size(); ++i)
+//        std::cout << c2[i] << ' ';
+//    std::cout << std::endl;
     return 0;
 }
