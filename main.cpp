@@ -6,29 +6,14 @@
 #include "vector.h"
 
 int main() {
-    vector<int> c, c2;
+    vector<int> c2;
 
-    c.push_back(4);
     c2.push_back(1);
     c2.push_back(2);
     c2.push_back(3);
-
-    std::cout << c.size() << ' ' << c2.size() << std::endl;
-
-    swap(c, c2);
-
-    std::cout << c.size() << ' ' << c2.size() << std::endl;
-
-    for (size_t i = 0; i < c.size(); ++i)
-        std::cout << c[i] << ' ';
-    std::cout << std::endl;
-
-    for (size_t i = 0; i < c2.size(); ++i)
-        std::cout << c2[i] << ' ';
-
-
-//    for (size_t i = 0; i < c2.size(); ++i)
-//        std::cout << c2[i] << ' ';
-//    std::cout << std::endl;
+    c2.push_back(4);
+    c2.push_back(5);
+    c2.push_back(6);
+    c2.push_back(7);
     return 0;
 }
