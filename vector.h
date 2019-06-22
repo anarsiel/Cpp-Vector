@@ -13,10 +13,6 @@ template<typename T>
 struct vector {
 
     typedef T value_type;
-//    typedef iterator;
-//    typedef ? const_iterator;
-//    typedef ? reverse_iterator;
-//    typedef ? const_reverse_iterator;
 
 private:
     struct many_elements_type {
@@ -245,31 +241,6 @@ public:
                 _empty = true;
             }
         }
-
-//        if (contains_only_one()) {
-//            buffer.one_element.~T();
-//            _empty = true;
-//            return;
-//        }
-//
-//        if (size() == 2) {
-//            make_unique();
-//
-//            T *tmp = static_cast<T *> (::operator new(sizeof(T)));
-//            new(tmp) T(buffer.many_elements->_array[0]);
-//
-//            delete (buffer.many_elements);
-//
-//            new(&buffer.one_element) T(*tmp);
-//            delete (tmp);
-//            _is_big = false;
-//            return;
-//        }
-//        make_unique();
-//        ensure_capacity();
-//
-//        (buffer.many_elements->_array[size() - 1]).~T();
-//        buffer.many_elements->_size--;
     }
 
     void reserve(size_t new_capacity) {
@@ -417,18 +388,6 @@ public:
         vector tmp(other);
 
         swap(tmp, *this);
-//        clear();
-//
-//        _is_big = other._is_big;
-//        _empty = other._empty;
-//
-//        if (other.contains_only_one()) {
-//            buffer.one_element = other.buffer.one_element;
-//        } else if (other.is_big()) {
-//            buffer.many_elements = other.buffer.many_elements;
-//            ++buffer.many_elements->_links;
-//        }
-
         return *this;
     }
 
@@ -541,11 +500,6 @@ public:
         vector_iterator(V* _data) : _data(_data) {}
 
         vector_iterator(vector_iterator const &other) : _data(other._data) {}
-
-//        vector_iterator &operator=(vector_iterator const &other) const {
-//            _data == other._data;
-//            return *this;
-//        }
 
         bool operator==(vector_iterator const &other) const {
             return _data == other._data;
@@ -737,10 +691,6 @@ private:
         auto tmp = static_cast<T *>(::operator new(get_capacity() * sizeof(T)));
         buffer.many_elements->_links--;
 
-//        for (size_t i = 0; i != size(); ++i) {
-//            new(tmp + i) T(buffer.many_elements->_array[i]);
-//        }
-
         for (size_t i = 0; i != size(); ++i) {
             try {
                 new(tmp + i) T(buffer.many_elements->_array[i]);
@@ -769,7 +719,6 @@ private:
         buffer.many_elements = tmp_buffer;
     }
 
-    // object must be unique
     void ensure_capacity() {
         if (!is_big()) return;
 
@@ -792,7 +741,6 @@ private:
             }
 
             for (size_t i = 0; i != tmp_size_var; ++i) {
-//                new(tmp_array + i) T(buffer.many_elements->_array[i]);
                 buffer.many_elements->_array[i].~T();
             }
             ::operator delete(buffer.many_elements->_array);
