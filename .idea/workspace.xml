@@ -12,11 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94bf1751-c5d3-4a8e-9f88-2c99eabef04c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/vector_testing.dir/vector_testing.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vector.h" beforeDir="false" afterPath="$PROJECT_DIR$/vector.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_testing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/vector_testing.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fault_injection.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="4205">
               <caret line="145" selection-start-line="145" selection-end-line="145" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -46,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vector_testing.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="133" selection-start-line="133" selection-end-line="154" selection-end-column="2" />
+            <state relative-caret-position="6119">
+              <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -61,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/counted.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="1363">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -70,16 +67,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vector.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="325" column="70" selection-start-line="325" selection-start-column="70" selection-end-line="325" selection-end-column="70" />
+            <state relative-caret-position="317">
+              <caret line="584" column="20" selection-start-line="584" selection-start-column="20" selection-end-line="584" selection-end-column="20" />
               <folding>
                 <element signature="e#104#122#0" expanded="true" />
                 <element signature="e#170#182#0" expanded="true" />
-                <element signature="e#1953#1977#0" expanded="true" />
-                <element signature="e#13793#13805#0" expanded="true" />
+                <element signature="e#15452#15472#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="261">
-              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -158,9 +154,9 @@
         <option value="$PROJECT_DIR$/fault_injection.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/counted.cpp" />
-        <option value="$PROJECT_DIR$/vector.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/vector_testing.cpp" />
+        <option value="$PROJECT_DIR$/vector.h" />
       </list>
     </option>
   </component>
@@ -253,18 +249,21 @@
       <workItem from="1560898032028" duration="8287000" />
       <workItem from="1560943382197" duration="4286000" />
       <workItem from="1560999440044" duration="48133000" />
-      <workItem from="1561117185764" duration="45252000" />
+      <workItem from="1561117185764" duration="45634000" />
+      <workItem from="1561188741469" duration="4000" />
+      <workItem from="1561188756657" duration="42000" />
+      <workItem from="1561194579387" duration="503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180164000" />
+    <option name="totallyTimeSpent" value="181095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="134" y="35" width="2746" height="1765" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07599699" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07938299" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -276,7 +275,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32955304" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32955304" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32955304" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32955304" />
       <window_info anchor="bottom" id="CMake" order="12" />
@@ -318,11 +317,6 @@
           <url>file://$PROJECT_DIR$/vector_testing.cpp</url>
           <line>909</line>
           <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>13</line>
-          <option name="timeStamp" value="134" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vector_testing.cpp</url>
@@ -560,7 +554,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fault_injection.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="4205">
           <caret line="145" selection-start-line="145" selection-end-line="145" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -568,6 +562,33 @@
             <element signature="e#1086#1491#0" expanded="true" />
             <element signature="e#2412#2416#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vector_testing.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6119">
+          <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/counted.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1363">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -581,42 +602,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/counted.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="325" column="70" selection-start-line="325" selection-start-column="70" selection-end-line="325" selection-end-column="70" />
+        <state relative-caret-position="317">
+          <caret line="584" column="20" selection-start-line="584" selection-start-column="20" selection-end-line="584" selection-end-column="20" />
           <folding>
             <element signature="e#104#122#0" expanded="true" />
             <element signature="e#170#182#0" expanded="true" />
-            <element signature="e#1953#1977#0" expanded="true" />
-            <element signature="e#13793#13805#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vector_testing.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="133" selection-start-line="133" selection-end-line="154" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#15452#15472#0" expanded="true" />
           </folding>
         </state>
       </provider>

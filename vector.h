@@ -68,11 +68,6 @@ public:
         }
     }
 
-    template<typename InputIterator>
-    vector(InputIterator first, InputIterator last) {
-        // todo
-    }
-
     T &operator[](size_t index) {
         if (contains_only_one()) return buffer.one_element;
 
@@ -336,8 +331,24 @@ public:
         buffer.many_elements->_links = 1;
     }
 
-    void resize() {
-        // todo
+    void resize(size_t _new_size) {
+        while (size() < _new_size) {
+            push_back(T());
+        }
+
+        while (size() > _new_size) {
+            pop_back();
+        }
+    }
+
+    void resize(size_t _new_size, T &element) {
+        while (size() < _new_size) {
+            push_back(element);
+        }
+
+        while (size() > _new_size) {
+            pop_back();
+        }
     }
 
     T *data() {
@@ -569,6 +580,21 @@ public:
     typedef vector_iterator<T const> const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
+    template<typename InputIterator>
+    vector(InputIterator first, InputIterator last) {
+        for (auto it = first; it != last; ++it) {
+            push_back(*it);
+        }
+    }
+
+    template<typename InputIterator>
+    void assign(InputIterator first, InputIterator last) {
+        clear();
+        for (auto it = first; it != last; ++it) {
+            push_back(*it);
+        }
+    }
 
     iterator begin() {
         if (is_big())
