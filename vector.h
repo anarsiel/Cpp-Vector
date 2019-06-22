@@ -508,16 +508,40 @@ public:
 
         ~vector_iterator() = default;
 
-        vector_iterator(V* _data) : _data(_data) {}
+        template <typename X>
+        vector_iterator(X* _data) : _data(_data) {}
 
-        vector_iterator(vector_iterator const &other) : _data(other._data) {}
+        template <typename X>
+        vector_iterator(vector_iterator<X> const &other) : _data(other._data) {}
 
-        bool operator==(vector_iterator const &other) const {
+        template <typename X>
+        bool operator==(vector_iterator<X> const &other) const {
             return _data == other._data;
         }
 
-        bool operator!=(vector_iterator const &other) const {
+        template <typename X>
+        bool operator!=(vector_iterator<X> const &other) const {
             return _data != other._data;
+        }
+
+        template <typename X>
+        bool operator<=(vector_iterator<X> const &other) const {
+            return _data <= other._data;
+        }
+
+        template <typename X>
+        bool operator>=(vector_iterator<X> const &other) const {
+            return _data >= other._data;
+        }
+
+        template <typename X>
+        bool operator<(vector_iterator<X> const &other) const {
+            return _data < other._data;
+        }
+
+        template <typename X>
+        bool operator>(vector_iterator<X> const &other) const {
+            return _data > other._data;
         }
 
         vector_iterator &operator++() {
@@ -603,7 +627,7 @@ public:
         if (contains_only_one())
             return iterator(&buffer.one_element);
 
-        return iterator(nullptr);
+        return iterator(data());
     }
 
     iterator end() {
@@ -613,7 +637,7 @@ public:
             return iterator(&buffer.one_element + 1);
         }
 
-        return iterator(nullptr);
+        return iterator(data());
     }
 
     const_iterator begin() const {
@@ -623,7 +647,7 @@ public:
             return const_iterator(&buffer.one_element);
         }
 
-        return const_iterator(nullptr);
+        return const_iterator(data());
     }
 
     const_iterator end() const {
@@ -633,7 +657,7 @@ public:
             return const_iterator(&buffer.one_element + 1);
         }
 
-        return const_iterator(nullptr);
+        return const_iterator(data());
     }
 
     reverse_iterator rbegin() {

@@ -13,6 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="94bf1751-c5d3-4a8e-9f88-2c99eabef04c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/vector_testing.dir/vector_testing.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/vector_testing" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/vector_testing" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vector.h" beforeDir="false" afterPath="$PROJECT_DIR$/vector.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -46,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vector_testing.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6119">
+            <state relative-caret-position="848">
               <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
@@ -58,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/counted.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1363">
+            <state relative-caret-position="848">
               <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -70,12 +72,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vector.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="584" column="20" selection-start-line="584" selection-start-column="20" selection-end-line="584" selection-end-column="20" />
+            <state relative-caret-position="587">
+              <caret line="619" column="14" lean-forward="true" selection-start-line="619" selection-start-column="14" selection-end-line="619" selection-end-column="14" />
               <folding>
                 <element signature="e#104#122#0" expanded="true" />
                 <element signature="e#170#182#0" expanded="true" />
-                <element signature="e#15452#15472#0" expanded="true" />
+                <element signature="e#13632#13644#0" expanded="true" />
+                <element signature="e#13717#13729#0" expanded="true" />
+                <element signature="e#13831#13843#0" expanded="true" />
+                <element signature="e#13980#13992#0" expanded="true" />
+                <element signature="e#15447#15471#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,7 +188,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,6 +204,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,18 +258,19 @@
       <workItem from="1561117185764" duration="45634000" />
       <workItem from="1561188741469" duration="4000" />
       <workItem from="1561188756657" duration="42000" />
-      <workItem from="1561194579387" duration="503000" />
+      <workItem from="1561194579387" duration="791000" />
+      <workItem from="1561195578613" duration="433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181095000" />
+    <option name="totallyTimeSpent" value="181816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="134" y="35" width="2746" height="1765" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07938299" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08051166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -565,26 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vector_testing.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6119">
-          <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/counted.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1363">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -602,14 +589,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/counted.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="848">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vector_testing.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="848">
+          <caret line="211" column="20" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="584" column="20" selection-start-line="584" selection-start-column="20" selection-end-line="584" selection-end-column="20" />
+        <state relative-caret-position="587">
+          <caret line="619" column="14" lean-forward="true" selection-start-line="619" selection-start-column="14" selection-end-line="619" selection-end-column="14" />
           <folding>
             <element signature="e#104#122#0" expanded="true" />
             <element signature="e#170#182#0" expanded="true" />
-            <element signature="e#15452#15472#0" expanded="true" />
+            <element signature="e#13632#13644#0" expanded="true" />
+            <element signature="e#13717#13729#0" expanded="true" />
+            <element signature="e#13831#13843#0" expanded="true" />
+            <element signature="e#13980#13992#0" expanded="true" />
+            <element signature="e#15447#15471#0" expanded="true" />
           </folding>
         </state>
       </provider>
