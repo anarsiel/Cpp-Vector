@@ -130,7 +130,7 @@ public:
         if (empty()) {
             new(&buffer.one_element) T(element);
             _empty = false;
-        } else if (contains_only_one()) {
+        } else if (!is_big()) {
             T *element_copy = static_cast<T *>(::operator new(sizeof(T)));
 
             try {
@@ -207,7 +207,6 @@ public:
 
             make_unique();
 
-            bool inc_arr_sz = is_big() && capacity() == size();
             try {
                 ensure_capacity();
             } catch (...) {
@@ -220,15 +219,12 @@ public:
                 if (need_to_copy) {
                     new(&buffer.many_elements->_array[size()]) T(*element_copy);
                 } else {
-                    new(&buffer.many_elements->_array[size()]) T(element);
+                    new(buffer.many_elements->_array + size()) T(element);
                 }
             } catch (...) {
                 if (need_to_copy)
                     delete(element_copy);
 
-                if (inc_arr_sz) {
-
-                }
                 throw;
             }
             buffer.many_elements->_size++;
@@ -239,30 +235,41 @@ public:
     }
 
     void pop_back() {
-        if (contains_only_one()) {
-            buffer.one_element.~T();
+        if (!is_big()) {
+            if (!empty()) buffer.one_element.~T();
             _empty = true;
-            return;
+        } else {
+            buffer.many_elements->_size--;
+            if (!empty()) buffer.many_elements->_array[size()].~T();
+            if (buffer.many_elements->_size == 0) {
+                _empty = true;
+            }
         }
 
-        if (size() == 2) {
-            make_unique();
-
-            T *tmp = static_cast<T *> (::operator new(sizeof(T)));
-            new(tmp) T(buffer.many_elements->_array[0]);
-
-            delete (buffer.many_elements);
-
-            new(&buffer.one_element) T(*tmp);
-            delete (tmp);
-            _is_big = false;
-            return;
-        }
-        make_unique();
-        ensure_capacity();
-
-        (buffer.many_elements->_array[size() - 1]).~T();
-        buffer.many_elements->_size--;
+//        if (contains_only_one()) {
+//            buffer.one_element.~T();
+//            _empty = true;
+//            return;
+//        }
+//
+//        if (size() == 2) {
+//            make_unique();
+//
+//            T *tmp = static_cast<T *> (::operator new(sizeof(T)));
+//            new(tmp) T(buffer.many_elements->_array[0]);
+//
+//            delete (buffer.many_elements);
+//
+//            new(&buffer.one_element) T(*tmp);
+//            delete (tmp);
+//            _is_big = false;
+//            return;
+//        }
+//        make_unique();
+//        ensure_capacity();
+//
+//        (buffer.many_elements->_array[size() - 1]).~T();
+//        buffer.many_elements->_size--;
     }
 
     void reserve(size_t new_capacity) {
@@ -313,8 +320,20 @@ public:
 
         size_t tmp_size_var = size();
         size_t tmp_capacity_var = new_capacity;
+
         for (size_t i = 0; i != tmp_size_var; ++i) {
-            new(tmp_array + i) T(buffer.many_elements->_array[i]);
+            try {
+                new(tmp_array + i) T(buffer.many_elements->_array[i]);
+            } catch (...) {
+                for (size_t j = 0; j < i; ++j) {
+                    tmp_array[i - j - 1].~T();
+                }
+                ::operator delete(tmp_array);
+                throw;
+            }
+        }
+
+        for (size_t i = 0; i != tmp_size_var; ++i) {
             buffer.many_elements->_array[i].~T();
         }
         ::operator delete(buffer.many_elements->_array);
@@ -395,18 +414,20 @@ public:
     }
 
     vector &operator=(vector const &other) {
-        while (size() > 0) {
-            pop_back();
-        }
+        vector tmp(other);
 
-        _is_big = other._is_big;
-        _empty = other._empty;
-        if (other.contains_only_one()) {
-            buffer.one_element = other.buffer.one_element;
-        } else if (other.is_big()) {
-            buffer.many_elements = other.buffer.many_elements;
-            ++buffer.many_elements->_links;
-        }
+        swap(tmp, *this);
+//        clear();
+//
+//        _is_big = other._is_big;
+//        _empty = other._empty;
+//
+//        if (other.contains_only_one()) {
+//            buffer.one_element = other.buffer.one_element;
+//        } else if (other.is_big()) {
+//            buffer.many_elements = other.buffer.many_elements;
+//            ++buffer.many_elements->_links;
+//        }
 
         return *this;
     }
@@ -464,34 +485,36 @@ public:
             b.buffer.many_elements = a.buffer.many_elements;
             a.buffer.many_elements = tmp;
         } else if (a.contains_only_one() && b.empty()) {
-            new(&b.buffer.one_element) T(a.buffer.one_element);
+            b.push_back(a[0]);
             a.clear();
         } else if (a.contains_only_one() && b.is_big()) {
-            auto tmp = static_cast<T *>(::operator new(sizeof(T)));
-            new (tmp) T(a.buffer.one_element);
+            auto tmp = new T(a.buffer.one_element);
+            auto tmp_m_e = b.buffer.many_elements;
 
+            try {
+                new (&b.buffer.one_element) T(*tmp);
+            } catch (...) {
+                delete(tmp);
+                throw;
+            }
             a.buffer.one_element.~T();
-
-            a.buffer.many_elements = b.buffer.many_elements;
-//            ::operator delete(b.buffer.many_elements);
-
-            new (&b.buffer.one_element) T(*tmp);
+            a.buffer.many_elements = tmp_m_e;
             delete(tmp);
         } else if (b.contains_only_one() && a.is_big()) {
-            auto tmp = static_cast<T *>(::operator new(sizeof(T)));
-            new (tmp) T(b.buffer.one_element);
+            auto tmp = new T(b.buffer.one_element);
+            auto tmp_m_e = a.buffer.many_elements;
 
-            b.clear();
-            b.buffer.many_elements = a.buffer.many_elements;
-            a.clear();
-            a.buffer.one_element = *tmp;
+            try {
+                new(&a.buffer.one_element) T(*tmp);
+            } catch (...) {
+                delete (tmp);
+                throw;
+            }
+            b.buffer.one_element.~T();
+            b.buffer.many_elements = tmp_m_e;
+            delete (tmp);
         } else if (b.contains_only_one() && a.empty()) {
-            auto tmp = static_cast<T *>(::operator new(sizeof(T)));
-            new (tmp) T(b.buffer.one_element);
-
-            new(&a.buffer.one_element) T(*tmp);
-            delete(tmp);
-
+            a.push_back(b[0]);
             b.clear();
         } else if (a.is_big() && b.empty()) {
             b.buffer.many_elements = a.buffer.many_elements;
@@ -651,21 +674,17 @@ public:
 
     void insert(iterator it, T const &x) {
         vector tmp;
-
         for (auto it1 = begin(); it1 != it; ++it1) {
             tmp.push_back(*it1);
         }
 
         tmp.push_back(x);
 
-        for (auto it1 = it; it1 != end(); ++it1) {
+        for (auto it1 = it; it1 != end();  ++it1) {
             tmp.push_back(*it1);
         }
 
-        this->clear();
-        for (auto it1 = tmp.begin(); it1 != tmp.end(); ++it1) {
-            push_back(*it1);
-        }
+        swap(*this, tmp);
     }
 
     void erase(iterator it1, iterator it2) {
@@ -679,10 +698,7 @@ public:
             tmp.push_back(*it);
         }
 
-        this->clear();
-        for (auto it = tmp.begin(); it != tmp.end(); ++it) {
-            push_back(*it);
-        }
+        swap(*this, tmp);
     }
 
     void erase(iterator it1) {
@@ -721,11 +737,34 @@ private:
         auto tmp = static_cast<T *>(::operator new(get_capacity() * sizeof(T)));
         buffer.many_elements->_links--;
 
+//        for (size_t i = 0; i != size(); ++i) {
+//            new(tmp + i) T(buffer.many_elements->_array[i]);
+//        }
+
         for (size_t i = 0; i != size(); ++i) {
-            new(tmp + i) T(buffer.many_elements->_array[i]);
+            try {
+                new(tmp + i) T(buffer.many_elements->_array[i]);
+            } catch (...) {
+                for (size_t j = 0; j < i; ++j) {
+                    tmp[i - j - 1].~T();
+                }
+                ::operator delete(tmp);
+                buffer.many_elements->_links++;
+                throw;
+            }
         }
 
-        auto tmp_buffer = new many_elements_type(size(), capacity(), get_amount_of_links(), tmp);
+        many_elements_type* tmp_buffer;
+        try {
+            tmp_buffer = new many_elements_type(size(), capacity(), get_amount_of_links(), tmp);
+        } catch (...) {
+            for (size_t j = 0; j < size(); ++j) {
+                tmp[size() - j - 1].~T();
+            }
+            ::operator delete(tmp);
+            buffer.many_elements->_links++;
+            throw;
+        }
 
         buffer.many_elements = tmp_buffer;
     }
@@ -740,8 +779,24 @@ private:
 
             size_t tmp_size_var = size();
             size_t tmp_capacity_var = capacity();
+            for (size_t i = 0; i != tmp_size_var; ++i) {
+                try {
+                    new(tmp_array + i) T(buffer.many_elements->_array[i]);
+                } catch (...) {
+                    for (size_t j = 0; j < i; ++j) {
+                        tmp_array[i - j - 1].~T();
+                    }
+                    ::operator delete(tmp_array);
+                    throw;
+                }
+            }
 
-            std::uninitialized_copy(buffer.many_elements->_array, buffer.many_elements->_array + size(), tmp_array);
+            for (size_t i = 0; i != tmp_size_var; ++i) {
+//                new(tmp_array + i) T(buffer.many_elements->_array[i]);
+                buffer.many_elements->_array[i].~T();
+            }
+            ::operator delete(buffer.many_elements->_array);
+//            std::uninitialized_copy(buffer.many_elements->_array, buffer.many_elements->_array + size(), tmp_array);
 
             buffer.many_elements->_array = tmp_array;
             buffer.many_elements->_size = tmp_size_var;
