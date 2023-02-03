@@ -4,4 +4,7 @@ My own implementation of C++ std::vector with
 * **small-object** and **copy-on-write** optimizations
 * **exceptions**
 
-and other stuff
+# Structure
+
+`vector.h` -- main file.
+`vector.cpp` -- testing my vector implementation with GTEST library
