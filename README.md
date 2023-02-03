@@ -6,5 +6,6 @@ My own implementation of C++ std::vector with
 
 # Structure
 
-`vector.h` -- main file.
+`vector.h` -- main file
+
 `vector.cpp` -- testing my vector implementation with GTEST library
